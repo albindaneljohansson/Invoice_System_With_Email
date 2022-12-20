@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class MailUtility {
 
     public static void sendMail(String recipient, String subject, String text) throws MessagingException {
-        System.out.println("Preparing to send...");
+        System.out.println("Preparing to send e-mail...");
         Properties properties = new Properties();
 
         properties.put("mail.smtp.auth", "true");
@@ -29,7 +29,7 @@ public class MailUtility {
 
         Message message = prepareMessage(session, myAccountEmail, recipient, subject, text);
         Transport.send(message);
-        System.out.println("Message sent!");
+        System.out.println("E-mail sent!");
     }
     private static Message prepareMessage(Session session, String myAccountEmail, String recipient, String subject, String text) {
         try {
