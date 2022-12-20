@@ -1,3 +1,4 @@
+import javax.mail.MessagingException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -69,7 +70,27 @@ public class App {
     }
 
     private void sendInvoice() {
+        viewAllInvoices();
+        int input = receiveInput();
+        Invoice invoice;
+        String text = "";
+        String subject = "";
+
+        for (Invoice i : invoiceRepository.readAll()) {
+            if (i.getNumber() == input) {
+                invoice = i;
+                text = i.toString();
+                subject = "Faktura " + Integer.toString(i.getNumber());
+                break;
+            }
+        }
         System.out.println("<<<Sending invoice>>>");
+        MailFacade mf = new MailFacade("albin.java@gmail.com", subject, text);
+        try {
+            mf.sendMail();
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void markInvoiceAsPaid() {
