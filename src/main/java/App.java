@@ -73,6 +73,7 @@ public class App {
         viewAllInvoices();
         int input = receiveInput();
         Invoice invoice;
+        String recipient = "albin.java@gmail.com";
         String text = "";
         String subject = "";
 
@@ -85,7 +86,7 @@ public class App {
             }
         }
         System.out.println("<<<Sending invoice>>>");
-        MailFacade mf = new MailFacade("albin.java@gmail.com", subject, text);
+        MailFacade mf = new MailFacade(recipient, subject, text);
         try {
             mf.sendMail();
         } catch (MessagingException e) {

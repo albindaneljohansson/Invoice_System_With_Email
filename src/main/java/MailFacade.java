@@ -11,8 +11,7 @@ public class MailFacade {
         this.text = text;
     }
     public void sendMail() throws MessagingException {
-        MailUtility mu = new MailUtility();
-        mu.sendMail(recipient,subject,text);
+        MailUtility.sendMail(recipient,subject,text);
     }
 
 }
